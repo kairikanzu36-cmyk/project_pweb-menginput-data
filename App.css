@@ -1,0 +1,266 @@
+/* src/App.css */
+
+/* --- 1. GLOBAL & CONTAINER --- */
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-color: #f6f8fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+.container {
+    max-width: 800px; /* Ukuran dilebarkan sedikit untuk menampung detail stok */
+    width: 100%;
+    padding: 40px;
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+/* --- 2. FORM & INPUT (Item Baru) --- */
+.item-form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.item-form input[type="text"],
+.item-form input[type="number"] {
+    flex-grow: 1;
+    padding: 14px;
+    border: 2px solid #bdbdbd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+.item-form input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* Styling Dasar Semua Tombol */
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.1s;
+}
+button:active {
+    transform: scale(0.98);
+}
+
+/* Tombol Tambah Item */
+.item-form button {
+    padding: 12px 20px;
+    background-color: #27ae60; /* Hijau yang lebih teduh */
+    color: white;
+    font-size: 16px;
+}
+.item-form button:hover {
+    background-color: #1e8449;
+}
+
+
+/* --- 3. KONTROL FILTER & AKSI --- */
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.filter-controls,
+.action-controls {
+    display: flex;
+    justify-content: flex-start; /* Ratakan ke kiri */
+    gap: 10px;
+    flex-wrap: wrap; /* Pastikan responsif */
+}
+
+/* Tombol Filter Umum */
+.filter-controls button {
+    padding: 10px 15px;
+    background-color: #e9ecef;
+    color: #495057;
+    border: 1px solid #ced4da;
+    font-size: 14px;
+    font-weight: 500;
+}
+.filter-controls button.active-filter {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border-color: #007bff;
+}
+/* Warna Khusus untuk filter stok rendah */
+.filter-controls button.warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+.filter-controls button.active-filter.warning {
+    background-color: #ffc107;
+    color: #333;
+    border-color: #e0a800;
+}
+
+
+/* Tombol Sortir dan Hapus */
+.btn-sort,
+.btn-clear {
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+}
+
+.btn-sort {
+    background-color: #6c757d;
+}
+.btn-sort:hover {
+    background-color: #5a6268;
+}
+
+.btn-clear {
+    background-color: #dc3545;
+}
+.btn-clear:hover:not(:disabled) {
+    background-color: #bd2130;
+}
+.btn-clear:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* --- 4. ITEM LIST & ITEMS --- */
+ul.item-list {
+    list-style: none;
+    padding: 0;
+}
+
+.item-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease-in-out;
+}
+.item-list li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.item-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-name {
+    font-size: 17px;
+    color: #34495e;
+    font-weight: 600;
+}
+
+.item-quantity {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-top: 5px;
+}
+
+/* Styling Khusus Stok */
+li.low-stock-item {
+    background-color: #fff8e1; /* Kuning muda */
+    border-left: 5px solid #ffc107;
+}
+
+li.out-of-stock {
+    background-color: #fcebeb; /* Merah muda sangat pucat */
+    border-left: 5px solid #dc3545;
+    opacity: 0.7;
+}
+li.out-of-stock .item-name {
+    text-decoration: line-through;
+    color: #a5464e;
+}
+
+.no-items {
+    text-align: center;
+    color: #999;
+    padding: 30px 20px;
+    font-style: italic;
+    font-size: 16px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+}
+
+
+/* --- 5. ITEM ACTIONS (BUTTONS) --- */
+.item-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* Styling Dasar Semua Tombol Aksi */
+.item-actions button {
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 6px;
+    color: white;
+}
+
+/* Tombol + dan - Stok */
+.btn-inc, .btn-dec {
+    padding: 8px 10px; /* Ukuran lebih kecil untuk + / - */
+    width: 35px;
+    height: 35px;
+    line-height: 1;
+    font-size: 18px;
+}
+.btn-dec { background-color: #e67e22; } /* Orange */
+.btn-dec:hover:not(:disabled) { background-color: #d35400; }
+.btn-dec:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-inc { background-color: #2ecc71; } /* Hijau terang */
+.btn-inc:hover { background-color: #27ad60; }
+
+.btn-edit { background-color: #3498db; } /* Biru */
+.btn-edit:hover { background-color: #2980b9; }
+
+.btn-delete { background-color: #e74c3c; } /* Merah */
+.btn-delete:hover { background-color: #c0392b; }
+
+.summary {
+    text-align: center;
+    margin-top: 25px;
+    color: #7f8c8d;
+    font-size: 14px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
